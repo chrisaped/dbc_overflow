@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20130425012000) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "question_id"
+    t.integer  "vote_count"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130425012000) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
+    t.integer  "vote_count"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

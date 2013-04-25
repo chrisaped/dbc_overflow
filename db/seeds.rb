@@ -12,27 +12,34 @@ require 'faker'
   User.create(:name => Faker::Name.name, :email => Faker::Internet.email, :password => "hello")
 end
 
-22.times do |x|
+10.times do |x|
   id = rand(10) + 1
   Question.create(:title => "question title #{x}", :content => "question content #{x}", :user_id => id)
 end
 
-11.times do |x|
+25.times do |x|
   q_id = rand(10) + 1
   u_id = rand(10) + 1
   Answer.create(:content => "answer content #{x}", :user_id => u_id, :question_id => q_id)
 end
 
-15.times do |x|
+25.times do |x|
   type = ["Question", "Answer"].sample
   c_id = rand(10) + 1
   u_id = rand(10) + 1
   Comment.create(:content => "comment content #{x}", :user_id => u_id, :commentable_id => c_id, :commentable_type => type)
 end
 
-21.times do |x|
-  type = ["Question", "Answer"].sample
+25.times do |x|
   v_id = rand(10) + 1
   u_id = rand(10) + 1
-  Vote.create(:user_id => u_id, :voteable_id => v_id, :voteable_type => type)
+  Vote.create(:user_id => u_id, :voteable_id => v_id, :voteable_type => "Question")
+  Question.update_counters v_id, :vote_count => 1
+end
+
+25.times do |x|
+  v_id = rand(10) + 1
+  u_id = rand(10) + 1
+  Vote.create(:user_id => u_id, :voteable_id => v_id, :voteable_type => "Answer")
+  Answer.update_counters v_id, :vote_count => 1
 end

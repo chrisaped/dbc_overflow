@@ -5,6 +5,7 @@ class Answer < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :question
+  belongs_to :voteable, :counter_cache => true
   has_many :votes, :as => :voteable
   has_many :comments, :as => :commentable
 
