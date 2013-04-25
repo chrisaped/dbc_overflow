@@ -8,7 +8,7 @@
 
 require 'faker'
 
-12.times do 
+12.times do
   User.create(:name => Faker::Name.name, :email => Faker::Internet.email, :password => "hello")
 end
 
