@@ -2,20 +2,21 @@ DbcOverflow::Application.routes.draw do
 
   root :to => "home#index"
 
+  # match "/sessions/new" => "sessions#new", :method => "new", :as => "login"
+  # match "/sessions/:id" => "sessions#destroy", :method => "delete", :as => "logout"
+
+  # get "log_out" => "sessions#destroy", :as => "log_out"
+  # get "login" => "sessions#new", :as => "login"
+
+  match '/signup',  to: 'users#new'
+  match '/login',  to: 'sessions#new'
+  match '/logout', to: 'sessions#destroy'
+
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   resources :questions
   resources :answers
   resources :comments
   resources :votes
 
 end
-
-# routes created for each above:
-
-    #     votes GET    /votes(.:format)              votes#index
-    #           POST   /votes(.:format)              votes#create
-    #  new_vote GET    /votes/new(.:format)          votes#new
-    # edit_vote GET    /votes/:id/edit(.:format)     votes#edit
-    #      vote GET    /votes/:id(.:format)          votes#show
-    #           PUT    /votes/:id(.:format)          votes#update
-    #           DELETE /votes/:id(.:format)          votes#destroy
