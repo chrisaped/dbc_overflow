@@ -1,2 +1,23 @@
-<h1><%= @question.title %></h1>
+<h1><%= @question.title %>, QID: <%= @question.id %></h1>
+<p><strong>Q_Content:</strong></p>
 <p><%= @question.content %></p>
+<p><strong>Vote_score:</strong> <%= @question.votes.count %></p>
+<p><strong>Q_Comments:</strong></p>
+
+<% @question.comments.each do |q_comment| %>
+  <p><%= q_comment.content %></p>
+<% end %>
+<%= link_to_unless(current_user.nil?, "Comment on Question", new_comment_path(:commentable_id => @question.id, :commentable_type => "Question")) do |name|
+        link_to("#{name}? Login!", new_session_path) end %>
+
+<p><strong>Answers:</strong></p>
+<% @answers.each do |answer| %>
+  <p><%= answer.content %></p>
+  <p>Vote_score: <%= answer.votes.count %></p>
+  <p>Ans_Comments:</p>
+  <% answer.comments.each do |comment| %>
+    <p><%= comment.content %></p>
+    <%= link_to_unless(current_user.nil?, "Comment on Answer", new_comment_path(:commentable_id => answer.id, :commentable_type => "Answer")) do |name|
+        link_to("#{name}? Login!", new_session_path) end %>
+  <% end %>
+<% end %>

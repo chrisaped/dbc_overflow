@@ -13,7 +13,6 @@ DbcOverflow::Application.routes.draw do
   match '/logout', to: 'sessions#destroy'
   match '/question', to: 'questions#show'
 
-
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions
