@@ -1,21 +1,22 @@
-<h1><%= @question.title %>, QID: <%= @question.id %></h1>
-<p><h2>question.content:</h2></p>
+<hr>
+<h1><%= @question.title %></h1>
+<hr>
 <p><%= @question.content %></p>
-  <h3>question.vote_count <%= @question.vote_count %></h3>
 
-<%= link_to_unless(current_user.nil?, "UpVoteQ", new_vote_path(:voteable_id => @question.id, :voteable_type => "Question", :vote_type => "up")) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
-
-<%= link_to_unless(current_user.nil?, "DownVoteQ", new_vote_path(:voteable_id => @question.id, :voteable_type => "Question", :vote_type => "down")) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
-
-<p><h3>question.comments:</h3></p>
-
+<%= link_to_unless(current_user.nil?, "Up Vote Question", new_vote_path(:voteable_id => @question.id, :voteable_type => "Question", :vote_type => "up")) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
+Votes: <%= @question.vote_count %><br>
+<%= link_to_unless(current_user.nil?, "Down Vote Question", new_vote_path(:voteable_id => @question.id, :voteable_type => "Question", :vote_type => "down")) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
+<hr>
+<h3>Comments:</h3>
+<hr>
 <% @question.comments.each do |q_comment| %>
   <p><%= q_comment.content %></p>
 <% end %>
-<%= link_to_unless(current_user.nil?, "Comment on Question", new_comment_path(:commentable_id => @question.id, :commentable_type => "Question")) do |name|
+<%= link_to_unless(current_user.nil?, "Comment", new_comment_path(:commentable_id => @question.id, :commentable_type => "Question")) do |name|
         link_to("#{name}? Login!", new_session_path) end %>
-
-<p><h2>answers:</h2></p>
+<hr>
+<h2>Answers:</h2>
+<hr>
 <% @answers.each do |answer| %>
 
   <h3>answer.content:</h3>
@@ -23,9 +24,9 @@
 
   <h3>answer.vote_count <%= answer.vote_count %></h3>
 
-<%= link_to_unless(current_user.nil?, "UpVoteAns", new_vote_path(:voteable_id => answer.id, :voteable_type => "Answer", :vote_type => "up", :question => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
+<%= link_to_unless(current_user.nil?, "Up Vote Answer", new_vote_path(:voteable_id => answer.id, :voteable_type => "Answer", :vote_type => "up", :question => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
 
-<%= link_to_unless(current_user.nil?, "DownVoteAns", new_vote_path(:voteable_id => answer.id, :voteable_type => "Answer", :vote_type => "down", :question => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
+<%= link_to_unless(current_user.nil?, "Down Vote Answer", new_vote_path(:voteable_id => answer.id, :voteable_type => "Answer", :vote_type => "down", :question => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
 
   <h3>answer.comments:</h3>
   <% answer.comments.each do |comment| %>
@@ -35,3 +36,4 @@
         link_to("#{name}? Login!", new_session_path) end %>
   <% end %>
 <% end %>
+  <%= link_to_unless(current_user.nil?, "Answer", new_answer_path(:question_id => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
