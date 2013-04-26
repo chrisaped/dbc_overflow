@@ -1,13 +1,16 @@
 <% if @current_user %>
-  <h1>Welcome, <%= current_user.name %>, to <%= @title %>!</h1>
+  <h2>Welcome, <%= current_user.name %></h2>
   <%= link_to "Sign Out", logout_path %><br>
+  <h3><%= link_to "Ask a Question", new_question_path %></h3>
 <% else %>
-  <h1>Welcome to  <%= @title %>.</h1>
+  <h2>Welcome!</h2>
   <a href="/sessions/new">Login</a><br>
   <%= link_to "Create Account", new_user_path %><br>
+  <h3><%= link_to "Ask a Question...Log In!", new_session_path %></h3>
 <% end %>
 
+
+<h2>Questions</h2>
 <% @questions.each do |question| %>
 <p><%= link_to question.title, :controller => "questions", :action => "show", :id => question.id %><br>
-<%= question.content %></p>
 <% end %>
