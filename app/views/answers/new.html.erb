@@ -1,0 +1,7 @@
+<h1>Answer the Question!</h1>
+<%= @question.content %>
+<%= form_for @answer do |f| %>
+  <%= f.text_area :content %><br>
+  <%= f.hidden_field :question_id, :value => @question.id %>
+  <%= f.submit "Post Comment" %>
+<% end %>

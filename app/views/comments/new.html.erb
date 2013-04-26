@@ -1,6 +1,8 @@
+<h3>Comment on the Question!</h3>
+<%= @question.content %>
 <%= form_for @comment do |f| %>
-  <%= f.text_field :commentable_id, :value => params[:commentable_id] %><br>
-  <%= f.text_field :commentable_type, :value => params[:commentable_type] %><br>
+  <%= f.hidden_field :commentable_id, :value => params[:commentable_id] %><br>
+  <%= f.hidden_field :commentable_type, :value => params[:commentable_type] %><br>
   <%= f.text_area :content, :placeholder => "Your Comment" %><br>
   <%= f.submit "Post Comment" %>
 <% end %>
