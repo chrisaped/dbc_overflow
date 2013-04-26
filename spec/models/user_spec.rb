@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
 
   it "will not be created if email is invalid" do
-    user = User.create(:name => "hannah", :email => "hannah@hannah", :password => "hello")
+    user = User.create(:name => "test", :email => "test@testing", :password => "hello")
     user.should_not be_valid
   end
 
@@ -16,4 +16,3 @@ describe User do
   it { should have_many(:votes) }
 
 end
-
