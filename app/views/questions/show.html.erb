@@ -12,7 +12,7 @@ Votes: <%= @question.vote_count %><br>
 <% @question.comments.each do |q_comment| %>
   <p><%= q_comment.content %></p>
 <% end %>
-<%= link_to_unless(current_user.nil?, "Comment", new_comment_path(:commentable_id => @question.id, :commentable_type => "Question")) do |name|
+<%= link_to_unless(current_user.nil?, "Comment", new_comment_path(:commentable_id => @question.id, :commentable_type => "Question"), :question_id => @question.id) do |name|
         link_to("#{name}? Login!", new_session_path) end %>
 <hr>
 <h2>Answers:</h2>
@@ -24,16 +24,17 @@ Votes: <%= @question.vote_count %><br>
 
   <h3>answer.vote_count <%= answer.vote_count %></h3>
 
-<%= link_to_unless(current_user.nil?, "Up Vote Answer", new_vote_path(:voteable_id => answer.id, :voteable_type => "Answer", :vote_type => "up", :question => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
+  <%= link_to_unless(current_user.nil?, "Up Vote Answer", new_vote_path(:voteable_id => answer.id, :voteable_type => "Answer", :vote_type => "up", :question => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
 
-<%= link_to_unless(current_user.nil?, "Down Vote Answer", new_vote_path(:voteable_id => answer.id, :voteable_type => "Answer", :vote_type => "down", :question => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
+  <%= link_to_unless(current_user.nil?, "Down Vote Answer", new_vote_path(:voteable_id => answer.id, :voteable_type => "Answer", :vote_type => "down", :question => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
 
   <h3>answer.comments:</h3>
   <% answer.comments.each do |comment| %>
     <h3>comment.content</h3>
     <p><%= comment.content %></p>
-    <%= link_to_unless(current_user.nil?, "Comment on Answer", new_comment_path(:commentable_id => answer.id, :commentable_type => "Answer")) do |name|
-        link_to("#{name}? Login!", new_session_path) end %>
+
   <% end %>
+      <%= link_to_unless(current_user.nil?, "Comment on Answer", new_comment_path(:commentable_id => answer.id, :commentable_type => "Answer"), :question_id => @question.id) do |name|
+        link_to("#{name}? Login!", new_session_path) end %><br>
 <% end %>
   <%= link_to_unless(current_user.nil?, "Answer", new_answer_path(:question_id => @question.id)) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
