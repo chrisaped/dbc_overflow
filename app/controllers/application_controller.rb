@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def title
-		@title = ["Ermahgerd...Sterck_Erverflo", "Crap_Overflow", "Hack_Overflow", "CheeseArmpit_Overflow", "Jacked_Overflow", "Smack_Overflow", "Clusterfuck"].sample
+		@title = ["I Lerv Sterck Erverflo", "Thers Shert ers Ermahzin!", "Ersk a Qerstern!", "Er mah Gerd, Bertstrerp ers Ermahzin!", "Ermahgerd...Sterck_Erverflo"].sample
   end
 end
