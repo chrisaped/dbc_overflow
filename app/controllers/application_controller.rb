@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
   helper_method :current_user
   helper_method :title
@@ -10,4 +11,5 @@ class ApplicationController < ActionController::Base
   def title
 		@title = ["I Lerv Sterck Erverflo", "Thers Shert ers Ermahzin!", "Ersk a Qerstern!", "Er mah Gerd, Bertstrerp ers Ermahzin!", "Ermahgerd...Sterck_Erverflo"].sample
   end
+
 end
