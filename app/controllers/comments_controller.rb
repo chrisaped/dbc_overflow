@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new(params[:comment], :user_id => current_user.id)
+    @question = Question.find(params[:commentable_id])
   end
 
   def create
