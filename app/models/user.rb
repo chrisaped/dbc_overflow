@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :name, :password
 
+  # has_secure_password
   validates :email, :name, :password, :presence => true
   validates :email, :format => { :with => /^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/ }
 
