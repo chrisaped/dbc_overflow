@@ -14,6 +14,7 @@ DbcOverflow::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :answers
+  resources :questions
   resources :comments
   resources :votes
 
