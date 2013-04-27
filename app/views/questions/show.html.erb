@@ -3,7 +3,7 @@
 <hr>
 <p><%= @question.content %></p>
 
-<%= link_to_unless(current_user.nil?, "Up Vote Question", new_vote_path(:voteable_id => @question.id, :voteable_type => "Question", :vote_type => "up")) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
+<%= link_to_unless(current_user.nil?, "Up Vote Question", new_vote_path(:voteable_id => @question.id, :voteable_type => "Question", :vote_type => "up"), :id => "upvote") do |name| link_to("#{name}? Login!", new_session_path) end %><br>
 Votes: <%= @question.vote_count %><br>
 <%= link_to_unless(current_user.nil?, "Down Vote Question", new_vote_path(:voteable_id => @question.id, :voteable_type => "Question", :vote_type => "down")) do |name| link_to("#{name}? Login!", new_session_path) end %><br>
 <hr>
